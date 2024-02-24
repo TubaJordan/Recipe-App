@@ -1,51 +1,53 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+            rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
         <title>Recipes Home</title>
-
-        <style type="text/css">
-            body {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                flex-direction: column;
-            }
-
-            .login-modal {
-                background-color: tan;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                flex-direction: column;
-                padding: 15px;
-                border-radius: 15px;
-            }
-
-            .form-element,
-            .button {
-                margin: 15px;
-            }
-        </style>
 
     </head>
 
     <body>
-        <h1 class="main-header">Welcome to the Recipe App</h1>
+        <div class="flex-container">
+            <div class="center-div">
+                <h1 class="main-header">Welcome to the Recipe App</h1>
+                <div class="login-container">
+                    <div class="top-notch"></div>
+                    <img src="{% static 'images/recipe-one.jpg' %}" alt="recipe-image" class="login-image" />
+                    <div class="login-form">
+                        <p class="login-welcome">Login to see your recipes</p>
 
-        <div class="login-modal">
-            <p>Placeholder details for logging into the app.</p>
-            <p>For demonstration only.</p>
+                        <div class="username-field">
+                            <img src="{% static 'images/person-outline.svg' %}" class="login-icon" />
+                            <input type="text" placeholder="Username" class="login-form-element">
+                        </div>
+                        <div class="username-field">
+                            <img src="{% static 'images/lock-open-outline.svg' %}" class="login-icon" />
+                            <input type="password" placeholder="Password" class="login-form-element">
+                        </div>
+                        <div>
+                            <button class="submit-button">Submit</button>
+                        </div>
 
-            <input type="text" placeholder="username" class="form-element">
-            <input type="password" placeholder="password" class="form-element">
-            <input type="email" placeholder="email" class="form-element">
 
-            <button class="button">Non-functional Submit Button</button>
+                    </div>
+
+                </div>
+            </div>
         </div>
 
+
+        <script src="{% static 'js/script.js' %}"></script>
     </body>
 
 </html>

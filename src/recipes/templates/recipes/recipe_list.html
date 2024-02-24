@@ -1,0 +1,49 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+            rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+        <title>Recipes List</title>
+
+    </head>
+
+    <body>
+
+        <div class="recipe-flex-container">
+            <div class="recipe-center-div">
+                <h2 class="main-header">Full List of Recipes</h2>
+
+                {% for object in object_list %}
+                <div class="recipes-container">
+                    <a href="{{object.get_absolute_url}}" class="recipe-wrapper">
+                        <div>
+                            <img src="{{object.pic.url}}" class="recipe-image" />
+                        </div>
+                        <div class="recipe-main-holder">
+                            <p class="recipe-link">{{object.name}}</p>
+                            <p class="recipe-description"><span class="description-field">Description:
+                                </span>{{object.description}}</p>
+                        </div>
+                    </a>
+                    <div class="top-notch"></div>
+                </div>
+                {% endfor %}
+
+
+            </div>
+        </div>
+
+        <script src="{% static 'js/script.js' %}"></script>
+    </body>
+
+</html>
