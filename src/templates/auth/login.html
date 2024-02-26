@@ -13,27 +13,34 @@
             rel="stylesheet">
 
         <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-        <title>The Recipe App</title>
-
+        <title>Login</title>
     </head>
 
     <body>
+
         <div class="flex-container">
             <div class="center-div">
-                <h1 class="main-header">Welcome to the Recipe App</h1>
+
+                <h1 class="main-header-login">Login</h1>
+
                 <div class="login-container">
                     <div class="top-notch"></div>
-                    <img src="{% static 'images/recipe-one.jpg' %}" alt="recipe-image" class="login-image" />
-                    <div class="login-form">
-                        <p class="login-welcome">Login to get started!</p>
-                        <a href="{%url 'login' %}" class="login-button">Login</a>
-                    </div>
+                    {% if error_message %}
+                    {{error_message}}
+                    {% endif %}
+                    <img src="{% static 'images/recipe-two.jpg' %}" alt="recipe-image" class="login-image" />
+                    <form action="" method="POST" class="login-form">
+                        {% csrf_token %}
+                        {{form}}
+                        <div class="button-holder">
+                            <button type="submit" class="login-form-button">Submit</button>
+                        </div>
+                    </form>
+
                 </div>
             </div>
         </div>
 
-
-        <script src="{% static 'js/script.js' %}"></script>
     </body>
 
 </html>

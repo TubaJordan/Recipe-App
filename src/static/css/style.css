@@ -59,6 +59,7 @@ html {
     border-radius: 20px;
     border: 2px solid white;
     position: relative;
+    font-family: "Montserrat", sans-serif;
 }
 
 .login-image {
@@ -68,10 +69,13 @@ html {
 }
 
 .login-form {
+    font-family: "Montserrat", sans-serif;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
+    align-items: flex-start;
     padding-left: 20px;
+    margin-bottom: 20px;
 }
 
 .login-form-element {
@@ -115,7 +119,7 @@ html {
 }
 
 .login-welcome {
-    font-size: 16px;
+    font-size: 20px;
     font-family: "Montserrat", sans-serif;
     margin-bottom: 25px;
     margin-top: 0;
@@ -335,10 +339,20 @@ html {
     background-color: rgb(31, 75, 75);
     color: rgb(230, 230, 230);
     padding: 5px;
+    text-decoration: none;
+    text-align: center;
+    font-size: 14px;
+    font-family: "Montserrat", sans-serif;
 }
 
-.back-button {
-    width: 25%;
+.back-button:hover {
+    background-color: rgb(15, 36, 36);
+    cursor: pointer;
+}
+
+.login-button {
+    font-family: "Montserrat", sans-serif;
+    width: 35%;
     border-radius: 20px;
     border: none;
     background-color: rgb(31, 75, 75);
@@ -346,9 +360,136 @@ html {
     padding: 5px;
     text-decoration: none;
     text-align: center;
+    font-size: 16px;
 }
 
-.back-button:hover {
+.login-button:hover {
+    background-color: rgb(15, 36, 36);
+    cursor: pointer;
+}
+
+.login-form-button {
+    font-family: "Montserrat", sans-serif;
+    border-radius: 20px;
+    border: none;
+    background-color: rgb(31, 75, 75);
+    color: rgb(230, 230, 230);
+    padding: 5px;
+    text-decoration: none;
+    text-align: center;
+    margin-top: 20px;
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+.login-form-button:hover {
+    background-color: rgb(15, 36, 36);
+    cursor: pointer;
+}
+
+.login-form>label {
+    margin-bottom: 5px;
+    font-size: 16px;
+    color: rgb(31, 75, 75);
+}
+
+.login-form>input {
+    margin-bottom: 25px;
+    font-size: 14px;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    border-bottom: 1px solid grey;
+    font-family: "Montserrat", sans-serif;
+}
+
+.button-holder {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.main-header-login {
+    text-align: center;
+    font-family: "Montserrat", sans-serif;
+    margin-top: 0;
+    margin-bottom: 40px;
+}
+
+.login-container>ul {
+    padding: 0;
+    font-size: 12px;
+    color: red;
+}
+
+.errorlist {
+    padding: 0;
+    font-size: 12px;
+    color: red;
+    list-style-type: none;
+    margin: 0;
+    margin-bottom: 15px;
+}
+
+.logout-top-message {
+    color: rgb(31, 75, 75);
+    font-size: 14px;
+    margin-top: 0;
+    margin-bottom: auto;
+}
+
+.logout-side-message {
+    display: flex;
+    flex-direction: column;
+    margin-left: 25px;
+}
+
+.logout-message {
+    margin-top: 0;
+    font-weight: 500;
+}
+
+.logout-submessage {
+    color: black;
+    font-size: 16px;
+}
+
+.login-button-onlogout {
+    font-family: "Montserrat", sans-serif;
+    width: 35%;
+    border-radius: 20px;
+    border: none;
+    background-color: rgb(31, 75, 75);
+    color: rgb(230, 230, 230);
+    padding: 5px;
+    text-decoration: none;
+    text-align: center;
+    font-size: 14px;
+}
+
+.re-log-message {
+    font-size: 12px;
+}
+
+.logout-button-onlist {
+    font-family: "Montserrat", sans-serif;
+    border-radius: 0 0 20px 20px;
+    border: none;
+    background-color: rgb(31, 75, 75);
+    color: rgb(230, 230, 230);
+    padding: 5px;
+    padding-left: 25px;
+    padding-right: 25px;
+    text-decoration: none;
+    text-align: center;
+    font-size: 14px;
+    position: fixed;
+    top: 0;
+    right: 27%;
+}
+
+.logout-button-onlist:hover {
     background-color: rgb(15, 36, 36);
     cursor: pointer;
 }
