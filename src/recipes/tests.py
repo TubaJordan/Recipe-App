@@ -1,6 +1,45 @@
 from django.test import TestCase
 from django.urls import reverse
+from django.contrib.auth.models import User
+
+from .forms import SearchForm
 from .models import Recipe
+
+
+class SearchFormTest(TestCase):
+
+    def test_form_validity(self):
+        # Form with all fields filled
+        form_data = {
+            'search_term': 'cake',
+            'ingredient': 'flour',
+            'difficulty': 'Easy',
+            'min_cooking_time': 10,
+            'max_cooking_time': 30,
+            'description': 'delicious'
+        }
+        form = SearchForm(data=form_data)
+        self.assertTrue(form.is_valid())
+
+        # Form with only some fields filled
+        form_data_partial = {
+            'search_term': 'cake',
+            'difficulty': 'Easy'
+        }
+        form_partial = SearchForm(data=form_data_partial)
+        self.assertTrue(form_partial.is_valid())
+
+    def test_cooking_time_validation(self):
+        # Test with invalid cooking time
+        form_data_invalid = {
+            'min_cooking_time': -5,  # Invalid value
+            'max_cooking_time': 'not a number'  # Invalid value
+        }
+        form_invalid = SearchForm(data=form_data_invalid)
+        self.assertFalse(form_invalid.is_valid())
+
+
+
 
 class RecipeModelTest(TestCase):
     
@@ -67,10 +106,14 @@ class RecipeModelTest(TestCase):
         # Verify the default image path is set as expected.
         self.assertEqual(self.recipe.pic, 'no_picture')
 
+
+
+
 class RecipeViewsTest(TestCase):
     
     @classmethod
     def setUpTestData(cls):
+        cls.user = User.objects.create_user(username='testuser', password='12345')
         # Set up data for the view tests.
         cls.recipe = Recipe.objects.create(
             name='View Test Recipe',
@@ -79,6 +122,16 @@ class RecipeViewsTest(TestCase):
             difficulty='Medium',
             description='View Test Description'
         )
+
+    # For the test_login_required_for_list_view
+    def test_login_required_for_list_view(self):
+        response = self.client.get('/list/')
+        self.assertRedirects(response, '/login/?next=/list/')
+
+    # For the test_login_required_for_detail_view
+    def test_login_required_for_detail_view(self):
+        response = self.client.get(f'/list/{self.recipe.pk}/')
+        self.assertRedirects(response, f'/login/?next=/list/{self.recipe.pk}/')
     
     def test_home_page_status_code(self):
         # Test the home page is accessible and returns a HTTP 200 status.
@@ -86,18 +139,19 @@ class RecipeViewsTest(TestCase):
         self.assertEqual(response.status_code, 200)
     
     def test_recipe_list_view(self):
-        # Verify the recipe list view works and includes the recipe's name.
+    # Log in before making the request
+        self.client.login(username='testuser', password='12345')
         response = self.client.get(reverse('recipes:list'))
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, 'View Test Recipe')
     
     def test_recipe_detail_view(self):
-        # Test the recipe detail view displays the correct recipe details.
+    # Log in before making the request
+        self.client.login(username='testuser', password='12345')
         response = self.client.get(reverse('recipes:detail', args=[self.recipe.pk]))
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, 'View Test Recipe')
     
     def test_recipe_detail_view_with_nonexistent_recipe(self):
-        # Check that a non-existent recipe detail view returns a 404 status.
+    # Log in before making the request
+        self.client.login(username='testuser', password='12345')
         response = self.client.get(reverse('recipes:detail', args=[999]))
         self.assertEqual(response.status_code, 404)

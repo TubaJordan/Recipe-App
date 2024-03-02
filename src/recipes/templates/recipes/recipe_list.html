@@ -21,14 +21,64 @@
 
         <div class="recipe-flex-container">
             <div class="recipe-center-div">
-                <h2 class="main-header">Full List of Recipes</h2>
+
+                <div class="options-holder">
+                    <div class="top-notch"></div>
+                    <button id="toggleSearchButton">Show Search Options</button>
+
+                    <div>
+                        <select id="chartSelector" class="chart-dropdown">
+                            <option value="" disabled selected>Recipe Analytics: Select one</option>
+                            <option value="popularIngredients">Popular Ingredients</option>
+                            <option value="recipeDifficultyDistribution">Recipe Difficulty Distribution</option>
+                            <option value="cookingTimeByDifficulty">Cooking Time by Difficulty</option>
+                        </select>
+
+                        <div id="chartModal" class="modal">
+
+                            <div class="modal-content">
+                                <div class="modal-top-notch"></div>
+                                <span class="close">&times;</span>
+                                <img id="chartImage" src="" alt="Chart" style="max-width:100%; height:auto;">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                {% if show_all_recipes_button %}
+                <a href="{% url 'recipes:list' %}" class="showall-recipe-button-onlist">Show All Recipes</a>
+                {% endif %}
+
+
+                <div id="searchFormContainer" style="display:none;">
+                    <div class="search-holder">
+                        <div class="top-notch"></div>
+                        <p class="search-header">Search Options</p>
+                        <form id="searchForm" method="get">
+                            {{ search_form.as_p }}
+                            <button type="submit" class="search-submit">Search</button>
+                        </form>
+                    </div>
+                </div>
+
+                <h2 class="main-header">{{ main_title }}</h2>
+                {% if search_details %}
+                <h3 class="search-details">{{ search_details }}</h3>
+                {% endif %}
+
                 <a href="{%url 'logout' %}" class="logout-button-onlist">Logout</a>
+
+
+
 
                 {% for object in object_list %}
                 <div class="recipes-container">
                     <a href="{{object.get_absolute_url}}" class="recipe-wrapper">
                         <div>
-                            <img src="{{object.pic.url}}" class="recipe-image" />
+                            {% if object.pic_url %}
+                            <img src="{{object.pic_url}}" class="recipe-image" />
+                            {% endif %}
                         </div>
                         <div class="recipe-main-holder">
                             <p class="recipe-link">{{object.name}}</p>
@@ -40,11 +90,17 @@
                 </div>
                 {% endfor %}
 
-
             </div>
         </div>
 
-        <script src="{% static 'js/script.js' %}"></script>
+
+        <script type="text/javascript">
+            // Define global variables to hold your base64 chart data
+            var popularIngredientsChart = "data:image/png;base64,{{ popular_ingredients_chart }}";
+            var recipeDifficultyDistributionChart = "data:image/png;base64,{{ recipe_difficulty_distribution_chart }}";
+            var cookingTimeByDifficultyChart = "data:image/png;base64,{{ cooking_time_by_difficulty_chart }}";
+        </script>
+        <script src="{% static 'js/script.js' %}" defer></script>
     </body>
 
 </html>
