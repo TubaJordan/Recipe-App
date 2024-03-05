@@ -39,7 +39,7 @@ html {
     background-size: cover;
     background-repeat: no-repeat;
     border-radius: 20px;
-    box-shadow: 0px 0px 10px black;
+    box-shadow: 0 0 10px black;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -169,20 +169,27 @@ html {
 }
 
 .recipe-center-div {
-    width: 50%;
+    width: 60%;
     padding: 25px;
     background-image: url(../images/login-background.jpg);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
     border-radius: 20px;
-    box-shadow: 0px 0px 10px black;
+    box-shadow: 0 0 10px black;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 50px;
+    margin-top: 80px;
     margin-bottom: 50px;
+}
+
+.grid-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 10px;
 }
 
 .recipes-container {
@@ -190,7 +197,6 @@ html {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    width: 50%;
     padding: 20px;
     padding-top: 25px;
     padding-bottom: 25px;
@@ -254,8 +260,8 @@ html {
     height: 13px;
     background: linear-gradient(180deg, rgba(150, 127, 97, 1) 0%, rgba(122, 104, 80, 1) 100%);
     position: absolute;
-    top: 0px;
-    right: 0px;
+    top: 0;
+    right: 0;
     border-radius: 10px 10px 0 0;
 }
 
@@ -337,7 +343,7 @@ html {
     border: none;
     background-color: rgb(31, 75, 75);
     color: rgb(230, 230, 230);
-    padding: 5px;
+    padding: 10px;
     text-decoration: none;
     text-align: center;
     font-size: 14px;
@@ -346,6 +352,24 @@ html {
 
 .back-button:hover {
     background-color: rgb(15, 36, 36);
+    cursor: pointer;
+}
+
+.delete-button {
+    width: 25%;
+    border-radius: 20px;
+    border: none;
+    background-color: rgb(75, 31, 31);
+    color: rgb(230, 230, 230);
+    padding: 5px;
+    text-decoration: none;
+    text-align: center;
+    font-size: 14px;
+    font-family: "Montserrat", sans-serif;
+}
+
+.delete-button:hover {
+    background-color: rgb(36, 15, 15);
     cursor: pointer;
 }
 
@@ -398,7 +422,7 @@ html {
     outline: none;
     border: none;
     background-color: transparent;
-    border-bottom: 1px solid grey;
+    border-bottom: 1px solid rgb(66, 66, 66);
     font-family: "Montserrat", sans-serif;
 }
 
@@ -419,13 +443,13 @@ html {
 .login-container>ul {
     padding: 0;
     font-size: 12px;
-    color: red;
+    color: rgb(189, 26, 26);
 }
 
 .errorlist {
     padding: 0;
     font-size: 12px;
-    color: red;
+    color: rgb(189, 26, 26);
     list-style-type: none;
     margin: 0;
     margin-bottom: 15px;
@@ -471,28 +495,6 @@ html {
     font-size: 12px;
 }
 
-.logout-button-onlist {
-    font-family: "Montserrat", sans-serif;
-    border-radius: 0 0 20px 20px;
-    border: none;
-    background-color: rgb(31, 75, 75);
-    color: rgb(230, 230, 230);
-    padding: 5px;
-    padding-left: 25px;
-    padding-right: 25px;
-    text-decoration: none;
-    text-align: center;
-    font-size: 14px;
-    position: fixed;
-    top: 0;
-    right: 27%;
-}
-
-.logout-button-onlist:hover {
-    background-color: rgb(15, 36, 36);
-    cursor: pointer;
-}
-
 .modal {
     display: none;
     position: fixed;
@@ -531,29 +533,6 @@ html {
     cursor: pointer;
 }
 
-.showall-recipe-button-onlist {
-    font-family: "Montserrat", sans-serif;
-    border-radius: 0 0 20px 20px;
-    border: none;
-    background-color: rgb(31, 75, 75);
-    color: rgb(230, 230, 230);
-    padding: 5px;
-    padding-left: 25px;
-    padding-right: 25px;
-    text-decoration: none;
-    text-align: center;
-    font-size: 14px;
-    position: fixed;
-    top: 0;
-    right: 33%;
-    z-index: 999999;
-}
-
-.showall-recipe-button-onlist:hover {
-    background-color: rgb(15, 36, 36);
-    cursor: pointer;
-}
-
 .chart-dropdown {
     font-family: "Montserrat", sans-serif;
     border-radius: 0 0 20px 20px;
@@ -580,24 +559,6 @@ html {
 .chart-dropdown:active {
     background-color: rgb(15, 36, 36);
     cursor: pointer;
-}
-
-#toggleSearchButton {
-    font-family: "Montserrat", sans-serif;
-    border-radius: 0 0 20px 20px;
-    border: none;
-    background-color: rgb(31, 75, 75);
-    color: rgb(230, 230, 230);
-    padding: 5px;
-    padding-left: 25px;
-    padding-right: 25px;
-    text-decoration: none;
-    text-align: center;
-    font-size: 14px;
-    position: fixed;
-    top: 0;
-    right: 58%;
-    z-index: 999999;
 }
 
 #toggleSearchButton:hover {
@@ -653,7 +614,8 @@ html {
     border-radius: 20px;
     padding-left: 10px;
     padding-right: 10px;
-    margin-left: 5px;
+    margin-top: 5px;
+    width: 30%;
 }
 
 .search-details {
@@ -661,6 +623,7 @@ html {
     margin-top: 0;
     margin-bottom: 30px;
     font-weight: 500;
+    text-align: center;
 }
 
 .search-submit {
@@ -682,6 +645,7 @@ html {
 }
 
 .modal-top-notch {
+    box-sizing: border-box;
     width: 70px;
     height: 18px;
     background: linear-gradient(180deg, rgba(150, 127, 97, 1) 0%, rgba(122, 104, 80, 1) 100%);
@@ -693,4 +657,545 @@ html {
 
 .chart-dropdown:focus {
     outline: none;
+}
+
+.nav-bar .nav-header .hamburger {
+    display: none;
+}
+
+.nav-bar {
+    background-image: url(../images/login-background.jpg);
+    border-bottom: 2px solid black;
+    box-shadow: 0 0 20px black;
+    border-radius: 0 0 20px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999999;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.nav-bar-header {
+    margin: 0;
+    margin: 10px;
+    margin-left: 20px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 28px;
+}
+
+.nav-items {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#toggleSearchButton,
+#chartSelector,
+.logout-button-onlist,
+.showall-recipe-button-onlist,
+.add-recipe-button {
+    background-color: rgb(41, 100, 100);
+    border: none;
+    color: rgb(219, 219, 219);
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-right: 10px;
+    font-family: "Montserrat", sans-serif;
+    border-radius: 20px;
+    transition: all 1s ease-in-out;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.update-recipe-button {
+    background-color: rgb(41, 100, 100);
+    border: none;
+    color: rgb(219, 219, 219);
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-right: 10px;
+    font-family: "Montserrat", sans-serif;
+    border-radius: 20px;
+    transition: all 1s ease-in-out;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.update-button-holder {
+    display: flex;
+    margin-top: 15px;
+}
+
+#toggleSearchButton:hover,
+#chartSelector:hover,
+.logout-button-onlist:hover,
+.showall-recipe-button-onlist:hover,
+.add-recipe-button:hover {
+    background-color: rgb(23, 58, 58);
+    cursor: pointer;
+    transition: all 1s ease-in-out;
+}
+
+#updateRecipeForm {
+    font-family: "Montserrat", sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+#updateRecipeForm input {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid rgb(66, 66, 66);
+    outline: none;
+    font-family: "Montserrat", sans-serif;
+    margin-left: 5px;
+    margin-top: 10px;
+}
+
+form>p {
+    display: flex;
+    flex-direction: column;
+}
+
+.update-recipe-header {
+    margin-bottom: 5px;
+    margin-top: 5px;
+    font-weight: 600;
+}
+
+.update-recipe-subheader {
+    margin: 0;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.confirm-modal-holder {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-recipe-modal-content,
+.modal-content-update {
+    background-color: #fefefe;
+    margin-top: -80px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 85%;
+    border-radius: 20px;
+    position: relative;
+    top: 25%;
+    width: 50%;
+}
+
+.add-recipe-header {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+}
+
+.add-recipe-name-holder,
+.add-recipe-ingredients-holder,
+.add-recipe-cookingtime-holder,
+.add-recipe-description-holder,
+.add-recipe-picture-holder {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+    font-family: "Montserrat", sans-serif;
+}
+
+#ingredients,
+#name,
+#cooking_time,
+#description {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid rgb(66, 66, 66);
+    outline: none;
+    font-family: "Montserrat", sans-serif;
+    margin-left: 5px;
+    margin-top: 10px;
+}
+
+#pic {
+    margin-top: 10px;
+    font-family: "Montserrat", sans-serif;
+}
+
+h2 {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+}
+
+.update-delete-holder {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: space-between;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.form-control.picture-change {
+    border: none !important;
+}
+
+.delete-button {
+    width: 50%;
+    padding: 10px;
+    margin-top: 20px;
+    margin-left: 20px;
+    color: rgb(212, 141, 141);
+}
+
+.back-button.delete-button {
+    width: 25%;
+}
+
+.update-button {
+    margin-top: 20px;
+    width: 25%;
+}
+
+.confirm-modal-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: "Montserrat", sans-serif;
+}
+
+.delete-here-textfield {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid rgb(66, 66, 66);
+    outline: none;
+    font-family: "Montserrat", sans-serif;
+    margin-left: 5px;
+    margin-top: 10px;
+    color: rgb(148, 23, 23);
+}
+
+
+@media screen and (max-width: 1200px) {
+
+    .flex-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
+
+    .recipe-flex-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 40px;
+    }
+
+    .center-div,
+    .recipe-center-div {
+        width: 90%;
+        padding: 10px;
+        margin-top: 30px;
+    }
+
+    .center-div-details {
+        margin-top: 150px;
+        width: 90%;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .login-container,
+    .recipes-container-details,
+    #searchFormContainer {
+        display: flex;
+        justify-content: center;
+        width: 80%;
+        padding: 20px;
+        padding-top: 25px;
+        padding-bottom: 25px;
+        background-color: rgba(255, 255, 255, 0.9);
+        border-radius: 20px;
+        border: 2px solid white;
+        position: relative;
+        font-family: "Montserrat", sans-serif;
+        margin-bottom: 20px;
+    }
+
+    .grid-layout {
+        grid-template-columns: 1fr;
+        gap: 0;
+        justify-items: center;
+        align-items: center;
+    }
+
+    #searchFormContainer {
+        margin-top: 30px;
+    }
+
+    .recipe-wrapper {
+        text-decoration: none;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+    }
+
+    .recipes-container {
+        display: flex;
+        flex-direction: row;
+        width: 80%;
+    }
+
+    .login-button {
+        width: 75%;
+    }
+
+    .login-form-button {
+        width: 75%;
+    }
+
+    .login-form>input {
+        width: 85%;
+        border-radius: none;
+    }
+
+    .main-header-login {
+        margin-bottom: 20px;
+    }
+
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100vh;
+        overflow: auto;
+        background-color: rgb(0, 0, 0);
+        background-color: rgba(0, 0, 0, 0.4);
+        border-radius: 20px;
+    }
+
+    .modal-content {
+        background-color: #fefefe;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 85%;
+        border-radius: 20px;
+        position: relative;
+        top: 25%;
+    }
+
+    .back-button {
+        width: 50%;
+        padding: 10px;
+    }
+
+    .time-and-difficulty {
+        width: 75%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        font-family: "Montserrat", sans-serif;
+    }
+
+    .recipe-image-list {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .recipe-link {
+        width: 100%;
+        font-size: 20px;
+    }
+
+    .search-holder {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #searchForm {
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+    }
+
+    #id_search_term,
+    #id_ingredient,
+    #id_min_cooking_time,
+    #id_max_cooking_time,
+    #id_description,
+    #id_difficulty,
+    #updateRecipeForm input {
+        width: 90%;
+        margin-top: 10px;
+    }
+
+    #id_difficulty {
+        padding: 5px;
+    }
+
+    .search-submit {
+        width: 75%;
+        padding: 10px;
+        margin-top: 15px;
+    }
+
+    .recipe-image-details {
+        width: 100%;
+    }
+
+    .nav-bar-header {
+        margin: 0;
+        margin: 10px;
+        font-family: "Montserrat", sans-serif;
+        font-size: 24px;
+    }
+
+    .nav-bar {
+        background-image: url(../images/login-background.jpg);
+        border-bottom: 2px solid black;
+        box-shadow: 0px 0px 20px black;
+        border-radius: 0 0 20px 20px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 999999;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .nav-bar .nav-header .hamburger {
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    .hamburger {
+        margin: 10px;
+        margin-right: 20px;
+        margin-top: 5px;
+        font-size: 24px;
+        background-color: transparent;
+        border: none;
+        padding: 0;
+        width: 25px;
+    }
+
+    .nav-header {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .nav-bar .nav-items {
+        display: none;
+    }
+
+    .nav-bar .nav-items.active {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 20px;
+        margin-top: 5px;
+    }
+
+    #toggleSearchButton,
+    #chartSelector,
+    .logout-button-onlist,
+    .showall-recipe-button-onlist,
+    .add-recipe-button {
+        background-color: rgb(41, 100, 100);
+        border: none;
+        color: rgb(219, 219, 219);
+        padding: 5px;
+        padding-left: 10px;
+        padding-right: 10px;
+        margin-bottom: 10px;
+        font-family: "Montserrat", sans-serif;
+        border-radius: 20px;
+        transition: all 1s ease-in-out;
+        text-decoration: none;
+        font-size: 16px;
+    }
+
+    #toggleSearchButton:hover,
+    #chartSelector:hover,
+    .logout-button-onlist:hover,
+    .showall-recipe-button-onlist:hover,
+    .add-recipe-button:hover {
+        background-color: rgb(23, 58, 58);
+        cursor: pointer;
+        transition: all 1s ease-in-out;
+    }
+
+    .center-div-details {
+        margin-top: 150px;
+        width: 50%;
+        padding: 25px;
+        background-image: url(../images/login-background.jpg);
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        border-radius: 20px;
+        box-shadow: 0 0 10px black;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .add-recipe-modal-content,
+    .modal-content-update {
+        background-color: #fefefe;
+        margin-top: -80px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 85%;
+        border-radius: 20px;
+        position: relative;
+        top: 25%;
+        width: 80%;
+    }
+
+    .update-delete-holder {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: space-between;
+        width: 100%;
+        margin-top: 10px;
+        gap: 20px;
+    }
+
+    .back-button.delete-button {
+        width: 50%;
+        margin-left: 0;
+    }
+
+    .update-button {
+        margin-top: 20px;
+        width: 50%;
+    }
+
 }

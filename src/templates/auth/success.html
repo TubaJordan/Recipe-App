@@ -6,25 +6,19 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
             rel="stylesheet">
-
         <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
         <title>Logged out</title>
     </head>
 
     <body>
-
         <div class="flex-container">
             <div class="center-div">
-
                 <h1 class="main-header-login">Thanks for visiting!</h1>
-
-
-                <div class="login-container">
+                <div class="login-container logout-specific">
                     <div class="top-notch"></div>
                     <div>
                         <img src="{% static 'images/recipe-three.jpg' %}" alt="recipe-image" class="login-image" />
@@ -35,12 +29,10 @@
                             <p class="logout-submessage">We will see you next time!</p>
                         </div>
                         <div>
-
                             <p class="re-log-message">Logged out by mistake? Log back in to continue</p>
                             <div class="button-holder">
                                 <a href="{%url 'login' %}" class="login-button-onlogout">Login</a>
                             </div>
-
                         </div>
                     </div>
                 </div>

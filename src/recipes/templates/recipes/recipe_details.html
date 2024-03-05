@@ -1,9 +1,10 @@
-{% load static %}
+{% load static %} <!-- Load static files to use in the template -->
 
 <!DOCTYPE html>
 <html lang="en">
 
     <head>
+        <!-- Meta tags and links for responsive design, font styling, and external CSS -->
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -11,46 +12,92 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
             rel="stylesheet">
-
         <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
         <title>{{object.name}} Details</title>
 
     </head>
 
     <body>
-        <div class="flex-container">
-            <div class="center-div">
+        <!-- Navigation bar -->
+        <nav class="nav-bar">
+            <div class="nav-header">
+                <p class="nav-bar-header">Recipe App</p>
+                <button class="hamburger" id="hamburger">&#9776;</button>
+            </div>
+            <div class="nav-items" id="navItems">
                 <a href="{%url 'logout' %}" class="logout-button-onlist">Logout</a>
+            </div>
+        </nav>
+
+        <!-- Recipe details display -->
+        <div class="recipe-flex-container">
+            <div class="recipe-center-div">
                 <div class="recipes-container-details">
                     <div class="top-notch-details"></div>
-
                     <div class="top-details-holder">
                         <h2 class="details-header">{{object.name}}</h2>
                         <img src="{{object.pic.url}}" class="recipe-image-details" />
                     </div>
-
                     <div class="description-holder">
                         <p class="details-description">{{object.description}}</p>
                     </div>
-
                     <div class="ingredients-details">
                         <p class="ingredients-details-list"><span class="sub-header">Ingredients:
                             </span>{{object.ingredients}}</p>
                     </div>
-
                     <div class="time-and-difficulty">
                         <p><span class="sub-header">Cooking Time: </span>{{object.cooking_time}} mins</p>
                         <p><span class="sub-header">Difficulty: </span>{{object.difficulty}}</p>
                     </div>
-
                     <div class="details-button-holder">
                         <a href="{% url 'recipes:list' %}" class="back-button">Back to List</a>
                     </div>
-
+                    <div class="update-delete-holder">
+                        <button type="button" id="updateRecipeButton" class="back-button update-button">Update
+                            Recipe</button>
+                        <button type="button" id="deleteRecipeButton" class="back-button delete-button"
+                            data-recipe-id="{{ object.id }}">Delete Recipe</button>
+                    </div>
                 </div>
             </div>
         </div>
 
+        <!-- Modal for updating recipes -->
+        <div id="updateRecipeModal" class="modal">
+            <div class="modal-content-update">
+                <div class="modal-top-notch"></div>
+                <span class="close">&times;</span>
+                <h2 class="update-recipe-header">Update Recipe:</h2>
+                <h3 class="update-recipe-subheader">{{ object.name }}</h3>
+                <form id="updateRecipeForm" action="{% url 'recipes:update_recipe' object.id %}" method="post"
+                    enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <div class="update-button-holder">
+                        <button type="submit" class="add-recipe-button update-recipe-button">Update Recipe</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Modal for confirming recipe deletion -->
+        <div id="deleteRecipeModal" class="modal">
+            <div class="modal-content delete-modal-content">
+                <div class="modal-top-notch"></div>
+                <span class="close" id="closeDeleteModal">&times;</span>
+                <div class="confirm-modal-header">
+                    <h2>Are you sure you want to delete this recipe?</h2>
+                    <p>Please type "DELETE RECIPE" to confirm.</p>
+                </div>
+                <div class="confirm-modal-holder">
+                    <input type="text" id="deleteConfirmationInput" class="delete-here-textfield" />
+                    <button type="button" id="confirmDeleteButton" class="delete-button">Confirm Delete</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- External JavaScript -->
         <script src="{% static 'js/script.js' %}"></script>
     </body>
 

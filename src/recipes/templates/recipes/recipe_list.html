@@ -1,9 +1,10 @@
-{% load static %}
+{% load static %} <!-- Load static files to use in the template -->
 
 <!DOCTYPE html>
 <html lang="en">
 
     <head>
+        <!-- Meta tags and links for responsive design, font styling, and external CSS -->
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -11,31 +12,43 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
             rel="stylesheet">
-
         <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
         <title>Recipes List</title>
 
     </head>
 
     <body>
+        <!-- Navigation bar with links and interactive elements -->
+        <nav class="nav-bar">
+            <div class="nav-header">
+                <p class="nav-bar-header">Recipe App</p>
+                <button class="hamburger" id="hamburger">&#9776;</button>
+            </div>
+            <div class="nav-items" id="navItems">
+                {% if show_all_recipes_button %}
+                <a href="{% url 'recipes:list' %}" class="showall-recipe-button-onlist">Show All Recipes</a>
+                {% endif %}
+                <button type="button" id="addRecipeButton" class="add-recipe-button">Add Recipe</button>
+                <button id="toggleSearchButton">Show Search Options</button>
+                <select id="chartSelector" class="chart-dropdow">
+                    <option value="" disabled selected>Recipe Analytics: Select one</option>
+                    <option value="popularIngredients">Popular Ingredients</option>
+                    <option value="recipeDifficultyDistribution">Recipe Difficulty Distribution</option>
+                    <option value="cookingTimeByDifficulty">Cooking Time by Difficulty</option>
+                </select>
+                <a href="{%url 'logout' %}" class="logout-button-onlist">Logout</a>
+            </div>
+        </nav>
 
+        <!-- Main content area for displaying recipes and search results -->
         <div class="recipe-flex-container">
             <div class="recipe-center-div">
-
                 <div class="options-holder">
                     <div class="top-notch"></div>
-                    <button id="toggleSearchButton">Show Search Options</button>
-
                     <div>
-                        <select id="chartSelector" class="chart-dropdown">
-                            <option value="" disabled selected>Recipe Analytics: Select one</option>
-                            <option value="popularIngredients">Popular Ingredients</option>
-                            <option value="recipeDifficultyDistribution">Recipe Difficulty Distribution</option>
-                            <option value="cookingTimeByDifficulty">Cooking Time by Difficulty</option>
-                        </select>
-
+                        <!-- Modal for analytics charts -->
                         <div id="chartModal" class="modal">
-
                             <div class="modal-content">
                                 <div class="modal-top-notch"></div>
                                 <span class="close">&times;</span>
@@ -43,14 +56,9 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
 
-                {% if show_all_recipes_button %}
-                <a href="{% url 'recipes:list' %}" class="showall-recipe-button-onlist">Show All Recipes</a>
-                {% endif %}
-
-
+                <!-- Search functionality hidden by default -->
                 <div id="searchFormContainer" style="display:none;">
                     <div class="search-holder">
                         <div class="top-notch"></div>
@@ -67,39 +75,71 @@
                 <h3 class="search-details">{{ search_details }}</h3>
                 {% endif %}
 
-                <a href="{%url 'logout' %}" class="logout-button-onlist">Logout</a>
-
-
-
-
-                {% for object in object_list %}
-                <div class="recipes-container">
-                    <a href="{{object.get_absolute_url}}" class="recipe-wrapper">
-                        <div>
-                            {% if object.pic_url %}
-                            <img src="{{object.pic_url}}" class="recipe-image" />
-                            {% endif %}
-                        </div>
-                        <div class="recipe-main-holder">
-                            <p class="recipe-link">{{object.name}}</p>
-                            <p class="recipe-description"><span class="description-field">Description:
-                                </span>{{object.description}}</p>
-                        </div>
-                    </a>
-                    <div class="top-notch"></div>
+                <!-- List of recipes displayed as a grid -->
+                <div class="grid-layout">
+                    {% for object in object_list %}
+                    <div class="recipes-container">
+                        <a href="{{object.get_absolute_url}}" class="recipe-wrapper">
+                            <div class="recipe-image-list">
+                                {% if object.pic_url %}
+                                <img src="{{object.pic_url}}" class="recipe-image" />
+                                {% endif %}
+                            </div>
+                            <div class="recipe-main-holder">
+                                <p class="recipe-link">{{object.name}}</p>
+                                <p class="recipe-description"><span class="description-field">Description:
+                                    </span>{{object.description}}</p>
+                            </div>
+                        </a>
+                        <div class="top-notch"></div>
+                    </div>
+                    {% endfor %}
                 </div>
-                {% endfor %}
+            </div>
+        </div>
 
+        <!-- Modal for adding new recipes -->
+        <div id="addRecipeModal" class="modal">
+            <div class="add-recipe-modal-content">
+                <div class="modal-top-notch"></div>
+                <span class="close">&times;</span>
+                <h2 class="add-recipe-header">Add New Recipe</h2>
+                <form id="addRecipeForm" method="post" enctype="multipart/form-data"
+                    data-post-url="{% url 'recipes:add_recipe' %}">
+                    {% csrf_token %}
+                    <div class="add-recipe-name-holder">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="add-recipe-ingredients-holder">
+                        <label for="ingredients">Ingredients (comma-separated):</label>
+                        <input type="text" id="ingredients" name="ingredients" required>
+                    </div>
+                    <div class="add-recipe-cookingtime-holder">
+                        <label for="cooking_time">Cooking Time (in minutes):</label>
+                        <input type="number" id="cooking_time" name="cooking_time" required>
+                    </div>
+                    <div class="add-recipe-description-holder">
+                        <label for="description">Description:</label>
+                        <input type="text" id="description" name="description">
+                    </div>
+                    <div class="add-recipe-picture-holder">
+                        <label for="pic">Picture:</label>
+                        <input type="file" id="pic" name="pic" accept="image/*">
+                    </div>
+                    <button type="submit" class="add-recipe-button">Add Recipe</button>
+                </form>
             </div>
         </div>
 
 
         <script type="text/javascript">
-            // Define global variables to hold your base64 chart data
+            // Global variables to hold base64 chart data
             var popularIngredientsChart = "data:image/png;base64,{{ popular_ingredients_chart }}";
             var recipeDifficultyDistributionChart = "data:image/png;base64,{{ recipe_difficulty_distribution_chart }}";
             var cookingTimeByDifficultyChart = "data:image/png;base64,{{ cooking_time_by_difficulty_chart }}";
         </script>
+        <!-- External JavaScript -->
         <script src="{% static 'js/script.js' %}" defer></script>
     </body>
 

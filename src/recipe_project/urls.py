@@ -21,11 +21,12 @@ from django.conf.urls.static import static
 from .views import login_view, logout_view
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path("", include("recipes.urls")),
-    path("recipes/", include("recipes.urls")),
-    path("login/", login_view, name="login"),
-    path("logout/", logout_view, name="logout"),
+    path('admin/', admin.site.urls), # URL pattern for admin site.
+    path("", include("recipes.urls"), name="recipes"), # Include recipe app URLs as the root URLconf.
+    path("recipes/", include("recipes.urls")), # Explicit URL pattern for recipe app URLs.
+    path("login/", login_view, name="login"), # URL pattern for the login view.
+    path("logout/", logout_view, name="logout"), # URL pattern for the logout view.
 ]
 
+# Serve media files through Django during development.
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

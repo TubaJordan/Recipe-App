@@ -1,9 +1,10 @@
-{% load static %}
+{% load static %} <!-- Load static files to use in the template -->
 
 <!DOCTYPE html>
 <html lang="en">
 
     <head>
+        <!-- Meta tags and links for responsive design, font styling, and external CSS -->
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -11,13 +12,15 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
             rel="stylesheet">
-
         <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
         <title>The Recipe App</title>
 
     </head>
 
     <body>
+
+        <!-- Main container with login button and welcome message -->
         <div class="flex-container">
             <div class="center-div">
                 <h1 class="main-header">Welcome to the Recipe App</h1>
@@ -32,7 +35,7 @@
             </div>
         </div>
 
-
+        <!-- External JavaScript -->
         <script src="{% static 'js/script.js' %}"></script>
     </body>
 
