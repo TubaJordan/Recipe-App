@@ -379,3 +379,46 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
+
+
+// Listen for the 'DOMContentLoaded' event to ensure the DOM is fully loaded before running the script.
+document.addEventListener('DOMContentLoaded', function () {
+    // Retrieve the registration link, modal, and close button by their IDs or class names.
+    const registerLink = document.getElementById('registerLink');
+    const registrationModal = document.getElementById('registrationModal');
+
+    // Only proceed if registrationModal exists in the DOM.
+    if (registrationModal) {
+        const closeRegistrationModal = registrationModal.querySelector('.close');
+
+        // Function to open the registration modal
+        function openRegistrationModal(event) {
+            event.preventDefault(); // Prevent the default anchor click action.
+            registrationModal.style.display = 'block';
+        }
+
+        // Function to close the registration modal
+        function closeRegistrationModalFunc() {
+            registrationModal.style.display = 'none';
+        }
+
+        // Add click event listeners
+        if (registerLink) {
+            registerLink.addEventListener('click', openRegistrationModal);
+        }
+
+        // Check if closeRegistrationModal exists before adding event listener
+        if (closeRegistrationModal) {
+            closeRegistrationModal.addEventListener('click', closeRegistrationModalFunc);
+        }
+
+        if (registrationModal) registrationModal.style.display = 'none';
+
+        // Close the modal if the user clicks anywhere outside of it
+        window.addEventListener('click', function (event) {
+            if (event.target == registrationModal) {
+                closeRegistrationModalFunc();
+            }
+        });
+    }
+});

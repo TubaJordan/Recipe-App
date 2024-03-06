@@ -1,6 +1,8 @@
 from django import forms
 from django.forms import ModelForm, TextInput, Textarea, NumberInput, FileInput
 from .models import Recipe
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 
 class SearchForm(forms.Form):
     # Define form fields for searching recipes.
@@ -26,3 +28,22 @@ class RecipeForm(ModelForm):
             'cooking_time': NumberInput(attrs={'class': 'form-control'}),
             'description': TextInput(attrs={'class': 'form-control'}),
         }
+
+# New form for User Registration
+class CustomUserCreationForm(UserCreationForm):
+    email = forms.EmailField(required=True, help_text='Enter a valid email address')
+
+    class Meta(UserCreationForm.Meta):
+        model = User
+        fields = ('username', 'email', 'password1', 'password2')
+
+    def __init__(self, *args, **kwargs):
+        super(CustomUserCreationForm, self).__init__(*args, **kwargs)
+
+        # Customize help texts
+        self.fields['username'].help_text = None
+        self.fields['password1'].help_text = '*Your password must contain at least 8 characters.'
+        self.fields['password2'].help_text = None
+
+        # Removing help text for fields you want to remove it from
+        self.fields['email'].help_text = None

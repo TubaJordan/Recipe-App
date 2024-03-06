@@ -129,6 +129,7 @@ html {
     font-family: "Montserrat", sans-serif;
     margin-top: 0;
     margin-bottom: 20px;
+    font-weight: 500;
 }
 
 .recipe-link {
@@ -433,11 +434,20 @@ html {
     align-items: center;
 }
 
+.register-button-holder {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 20px;
+}
+
 .main-header-login {
     text-align: center;
     font-family: "Montserrat", sans-serif;
     margin-top: 0;
     margin-bottom: 40px;
+    font-weight: 500;
 }
 
 .login-container>ul {
@@ -507,6 +517,7 @@ html {
     background-color: rgb(0, 0, 0);
     background-color: rgba(0, 0, 0, 0.4);
     border-radius: 20px;
+    font-family: "Montserrat", sans-serif;
 }
 
 .modal-content {
@@ -517,6 +528,20 @@ html {
     width: 35%;
     border-radius: 20px;
     position: relative;
+}
+
+.register-modal-content {
+    background-color: #fefefe;
+    margin-top: -80px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 85%;
+    border-radius: 20px;
+    position: relative;
+    top: 25%;
+    width: 50%;
 }
 
 .close {
@@ -588,6 +613,38 @@ html {
     font-weight: 500;
     color: rgb(31, 75, 75);
     ;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+}
+
+#id_username,
+#id_password {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid rgb(66, 66, 66);
+    outline: none;
+    font-family: "Montserrat", sans-serif;
+    width: 90%;
+    margin-bottom: 15px;
+}
+
+#register_username,
+#register_email,
+#register_password1,
+#register_password2 {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid rgb(66, 66, 66);
+    outline: none;
+    font-family: "Montserrat", sans-serif;
+    width: 90%;
+    margin: 10px 0 0 5px;
 }
 
 #id_search_term,
@@ -696,7 +753,8 @@ html {
 #chartSelector,
 .logout-button-onlist,
 .showall-recipe-button-onlist,
-.add-recipe-button {
+.add-recipe-button,
+.register-button {
     background-color: rgb(41, 100, 100);
     border: none;
     color: rgb(219, 219, 219);
@@ -735,7 +793,8 @@ html {
 #chartSelector:hover,
 .logout-button-onlist:hover,
 .showall-recipe-button-onlist:hover,
-.add-recipe-button:hover {
+.add-recipe-button:hover,
+.register-button:hover {
     background-color: rgb(23, 58, 58);
     cursor: pointer;
     transition: all 1s ease-in-out;
@@ -800,6 +859,15 @@ form>p {
 .add-recipe-header {
     font-family: "Montserrat", sans-serif;
     font-weight: 500;
+    color: rgb(31, 75, 75);
+}
+
+.register-header {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    color: rgb(31, 75, 75);
+    margin-top: 0;
+    margin-bottom: 25px;
 }
 
 .add-recipe-name-holder,
@@ -811,6 +879,23 @@ form>p {
     flex-direction: column;
     margin-bottom: 30px;
     font-family: "Montserrat", sans-serif;
+}
+
+.register-name-holder,
+.register-email-holder,
+.register-password-holder {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+    font-family: "Montserrat", sans-serif;
+    width: 100%;
+}
+
+#register_username,
+#register_email,
+#register_password1,
+#register_password2 {
+    width: 98%;
 }
 
 #ingredients,
@@ -829,6 +914,20 @@ form>p {
 #pic {
     margin-top: 10px;
     font-family: "Montserrat", sans-serif;
+}
+
+.text-muted {
+    font-size: 12px;
+    color: rgb(54, 13, 13);
+    width: 100%;
+    margin-top: 10px;
+    text-align: center;
+}
+
+#registrationModal {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
 }
 
 h2 {
@@ -885,8 +984,21 @@ h2 {
     color: rgb(148, 23, 23);
 }
 
+.dont-have-account {
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+}
+
+#registerLink {
+    color: rgb(41, 100, 100);
+    font-size: 500;
+}
 
 @media screen and (max-width: 1200px) {
+
+    .dont-have-account {
+        margin-top: 0;
+    }
 
     .flex-container {
         display: flex;
@@ -1122,7 +1234,8 @@ h2 {
     #chartSelector,
     .logout-button-onlist,
     .showall-recipe-button-onlist,
-    .add-recipe-button {
+    .add-recipe-button,
+    .register-button {
         background-color: rgb(41, 100, 100);
         border: none;
         color: rgb(219, 219, 219);
@@ -1141,7 +1254,8 @@ h2 {
     #chartSelector:hover,
     .logout-button-onlist:hover,
     .showall-recipe-button-onlist:hover,
-    .add-recipe-button:hover {
+    .add-recipe-button:hover,
+    .register-button:hover {
         background-color: rgb(23, 58, 58);
         cursor: pointer;
         transition: all 1s ease-in-out;
@@ -1165,6 +1279,20 @@ h2 {
 
     .add-recipe-modal-content,
     .modal-content-update {
+        background-color: #fefefe;
+        margin-top: -80px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 85%;
+        border-radius: 20px;
+        position: relative;
+        top: 25%;
+        width: 80%;
+    }
+
+    .register-modal-content {
         background-color: #fefefe;
         margin-top: -80px;
         margin-left: auto;

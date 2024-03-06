@@ -15,25 +15,78 @@
     </head>
 
     <body>
+
         <div class="flex-container">
             <div class="center-div">
                 <h1 class="main-header-login">Login</h1>
                 <div class="login-container">
                     <div class="top-notch"></div>
+                    <!-- Error message display -->
                     {% if error_message %}
-                    {{error_message}}
+                    <p class="error">{{ error_message }}</p>
                     {% endif %}
                     <img src="{% static 'images/recipe-two.jpg' %}" alt="recipe-image" class="login-image" />
-                    <form action="" method="POST" class="login-form">
+                    <!-- Login form -->
+                    <form action="{% url 'login' %}" method="POST" class="login-form">
                         {% csrf_token %}
-                        {{form}}
+                        <div class="form-group">
+                            {{ form.username.label_tag }}
+                            {{ form.username }}
+                        </div>
+                        <div class="form-group">
+                            {{ form.password.label_tag }}
+                            {{ form.password }}
+                        </div>
                         <div class="button-holder">
-                            <button type="submit" class="login-form-button">Submit</button>
+                            <button type="submit" name="login" class="login-form-button">Login</button>
                         </div>
                     </form>
+                    <!-- Registration link -->
+
                 </div>
+                <p class="dont-have-account">Don't have an account? <a href="#" id="registerLink">Register here</a>
+                </p>
             </div>
         </div>
+
+        <!-- Registration Modal -->
+        <div id="registrationModal" class="modal">
+            <div class="register-modal-content">
+                <div class="modal-top-notch"></div>
+                <span class="close">&times;</span>
+                <h2 class="register-header">Register</h2>
+                <form action="{% url 'login' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group register-name-holder">
+                        {{ registration_form.username.label_tag }}
+                        <input type="text" name="register-username" id="register_username" class="form-control"
+                            required>
+                    </div>
+                    <div class="form-group register-email-holder">
+                        {{ registration_form.email.label_tag }}
+                        <input type="email" name="register-email" id="register_email" class="form-control" required>
+                    </div>
+                    <div class="form-group register-password-holder">
+                        {{ registration_form.password1.label_tag }}
+                        <input type="password" name="register-password1" id="register_password1" class="form-control"
+                            required>
+
+                    </div>
+                    <div class="form-group register-password-holder">
+                        {{ registration_form.password2.label_tag }}
+                        <input type="password" name="register-password2" id="register_password2" class="form-control"
+                            required>
+                        <small class="form-text text-muted">{{ registration_form.password1.help_text }}</small>
+                    </div>
+                    <div class="register-button-holder">
+                        <button type="submit" name="register" class="register-button">Register</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- External JavaScript -->
+        <script src="{% static 'js/script.js' %}" defer></script>
     </body>
 
 </html>

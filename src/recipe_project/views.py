@@ -2,42 +2,80 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
+from recipes.forms import CustomUserCreationForm
 
 def login_view(request):
-    # Initialize an error message variable to None.
     error_message = None
-    # Create an instance of the AuthenticationForm.
+    # Remove prefix and initialize form outside of POST check only for rendering purposes
     form = AuthenticationForm()
+    registration_form = CustomUserCreationForm(prefix='register')
 
-    # Check if the form was submitted via POST.
     if request.method == "POST":
-        # Re-bind the form with POST data.
-        form = AuthenticationForm(data=request.POST)
-
-        # Validate the form.
-        if form.is_valid():
-            # Extract username and password from the form.
-            username = form.cleaned_data.get("username")
-            password = form.cleaned_data.get("password")
-
-            # Attempt to authenticate the user.
-            user = authenticate(username=username, password=password)
-            if user is not None:
-                # If user is authenticated, log them in and redirect to the recipe list.
-                login(request, user)
-                return redirect("recipes:list")
+        if 'login' in request.POST:  # Check if the login form was submitted
+            # Re-instantiate the form with POST data for login attempts
+            form = AuthenticationForm(request, request.POST)
+            # Process the login form
+            if form.is_valid():
+                username = form.cleaned_data.get('username')
+                password = form.cleaned_data.get('password')
+                user = authenticate(request, username=username, password=password)
+                if user is not None:
+                    login(request, user)
+                    return redirect('recipes:list')
+                else:
+                    error_message = 'Invalid username or password'
+        elif 'register' in request.POST:  # Check if the registration form was submitted
+            registration_form = CustomUserCreationForm(request.POST, prefix='register')  # Re-instantiate with POST data for registration attempts
+            # Process the registration form
+            if registration_form.is_valid():
+                user = registration_form.save()
+                login(request, user)  # Log in the user directly after registration
+                return redirect('recipes:list')
             else:
-                # Set an error message if authentication fails.
-                error_message = "ooops.. somerthing went wrong"
+                error_message = 'Please correct the errors below'
 
-    # Prepare the context with the form and any error message.
     context = {
-        "form": form,
-        "error_message": error_message
+        'form': form,
+        'registration_form': registration_form,
+        'error_message': error_message
     }
+    return render(request, 'auth/login.html', context)
 
-    # Render and return the login page with the context.
-    return render(request, "auth/login.html", context)
+# def login_view(request):
+#     # Initialize an error message variable to None.
+#     error_message = None
+#     # Create an instance of the AuthenticationForm.
+#     form = AuthenticationForm()
+
+#     # Check if the form was submitted via POST.
+#     if request.method == "POST":
+#         # Re-bind the form with POST data.
+#         form = AuthenticationForm(data=request.POST)
+
+#         # Validate the form.
+#         if form.is_valid():
+#             # Extract username and password from the form.
+#             username = form.cleaned_data.get("username")
+#             password = form.cleaned_data.get("password")
+
+#             # Attempt to authenticate the user.
+#             user = authenticate(username=username, password=password)
+#             if user is not None:
+#                 # If user is authenticated, log them in and redirect to the recipe list.
+#                 login(request, user)
+#                 return redirect("recipes:list")
+#             else:
+#                 # Set an error message if authentication fails.
+#                 error_message = "ooops.. somerthing went wrong"
+
+#     # Prepare the context with the form and any error message.
+#     context = {
+#         "form": form,
+#         "error_message": error_message
+#     }
+
+#     # Render and return the login page with the context.
+#     return render(request, "auth/login.html", context)
 
 # Ensure the user is logged in before allowing them to access this view.
 @login_required
