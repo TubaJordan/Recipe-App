@@ -989,12 +989,54 @@ h2 {
     font-size: 14px;
 }
 
-#registerLink {
+#registerLink,
+#aboutLink,
+.learn-more-link {
     color: rgb(41, 100, 100);
-    font-size: 500;
+    font-weight: 500;
 }
 
+#registerLink:hover,
+#aboutLink:hover,
+.learn-more-link:hover {
+    color: rgb(22, 54, 54);
+}
+
+.about-mid-section {
+    border-bottom: 1px solid black;
+    margin-bottom: 25px;
+}
+
+.about-footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.about-header {
+    line-height: 1.75;
+}
+
+.about-header-main {
+    margin: 0;
+    color: rgb(41, 100, 100);
+}
+
+.about-button-holder {
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+
 @media screen and (max-width: 1200px) {
+
+    .about-button-holder {
+        margin-top: 0;
+        margin-bottom: 15px;
+    }
 
     .dont-have-account {
         margin-top: 0;
@@ -1324,6 +1366,10 @@ h2 {
     .update-button {
         margin-top: 20px;
         width: 50%;
+    }
+
+    .main-page-header {
+        font-size: 34px;
     }
 
 }

@@ -422,3 +422,32 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
+
+// About modal functionality
+document.addEventListener('DOMContentLoaded', function () {
+    const aboutModal = document.getElementById('aboutModal');
+    const aboutBtn = document.getElementById('aboutLink');
+    const closeAboutModal = document.querySelector('#aboutModal .close');
+
+    // Function to open the About modal
+    if (aboutBtn) {
+        aboutBtn.addEventListener('click', function (event) {
+            event.preventDefault(); // Prevent the default link action
+            aboutModal.style.display = 'block';
+        });
+    }
+
+    // Function to close the About modal
+    if (closeAboutModal) {
+        closeAboutModal.addEventListener('click', function () {
+            aboutModal.style.display = 'none';
+        });
+    }
+
+    // Close the modal if the user clicks anywhere outside of it
+    window.addEventListener('click', function (event) {
+        if (event.target == aboutModal) {
+            aboutModal.style.display = 'none';
+        }
+    });
+});

@@ -5,6 +5,16 @@
 
     <head>
         <!-- Meta tags and links for responsive design, font styling, and external CSS -->
+        <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/apple-touch-icon.png' %}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon-32x32.png' %}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon-16x16.png' %}">
+        <link rel="manifest" href="{% static 'images/site.webmanifest' %}">
+        <link rel="mask-icon" href="{% static 'images/safari-pinned-tab.svg' %}" color="#5bbad5">
+        <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
+        <meta name="msapplication-TileColor" content="#00aba9">
+        <meta name="msapplication-config" content="{% static 'images/browserconfig.xml' %}">
+        <meta name="theme-color" content="#ffffff">
+
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -23,7 +33,7 @@
         <!-- Main container with login button and welcome message -->
         <div class="flex-container">
             <div class="center-div">
-                <h1 class="main-header">Welcome to the Recipe App</h1>
+                <h1 class="main-header main-page-header">Welcome to the Recipe App</h1>
                 <div class="login-container">
                     <div class="top-notch"></div>
                     <img src="{% static 'images/recipe-one.jpg' %}" alt="recipe-image" class="login-image" />
@@ -32,8 +42,39 @@
                         <a href="{%url 'login' %}" class="login-button">Login</a>
                     </div>
                 </div>
+                <div class="about-button-holder">
+                    <a href="#" id="aboutLink" class="about-link">About</a>
+                </div>
             </div>
         </div>
+
+        <!-- About Modal -->
+        <div id="aboutModal" class="modal" style="display:none;">
+            <div class="register-modal-content">
+                <div class="modal-top-notch"></div>
+                <span class="close">&times;</span>
+                <div class="about-header">
+                    <h2 class="about-header-main">About The Recipe App</h2>
+                    <p>The Recipe App is a fully functional web application designed to allow users to create, read, and
+                        modify recipes, as well as search for recipes based on ingredients and other parameters. Built
+                        with
+                        Python and Django, this app demonstrates the capabilities of modern web application development,
+                        including user authentication, dynamic content creation, and data visualization. The project
+                        aims to
+                        showcase the developer's understanding of the Django web framework and their ability to develop
+                        a
+                        comprehensive web application.</p>
+                </div>
+                <div class="about-mid-section"></div>
+                <div class="about-footer">
+                    <p>Designed by Jordan Nelson</p>
+                    <a href="https://jordannelson.dev/" target="_blank" class="learn-more-link">Learn more about the
+                        developer</a>
+                </div>
+            </div>
+
+        </div>
+
 
         <!-- External JavaScript -->
         <script src="{% static 'js/script.js' %}"></script>

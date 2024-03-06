@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Recipe App is a fully functional web application designed to allow users to create, read, and modify recipes, as well as search for recipes based on ingredients. Built with Python and Django, this app demonstrates the capabilities of modern web application development, including user authentication, dynamic content creation, and data visualization. The project aims to showcase the developer's understanding of the Django web framework and their ability to develop a comprehensive web application.
+The Recipe App is a fully functional web application designed to allow users to create, read, and modify recipes, as well as search for recipes based on ingredients and other parameters. Built with Python and Django, this app demonstrates the capabilities of modern web application development, including user authentication, dynamic content creation, and data visualization. The project aims to showcase the developer's understanding of the Django web framework and their ability to develop a comprehensive web application.
 
 ## Technical Requirements
 
